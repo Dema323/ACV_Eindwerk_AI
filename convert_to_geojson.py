@@ -27,7 +27,7 @@ for point in data['gps']:
     #print(speed)
     point_list = [timestamp, latitude, longitude, speed]
     points_list.append(point_list)
-    
+
 for x in points_list:
     print(x)
 

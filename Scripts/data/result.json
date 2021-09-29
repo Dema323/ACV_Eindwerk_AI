@@ -1,0 +1,6 @@
+{
+"type": "FeatureCollection",
+"features": [
+{ "type": "Feature", "properties": { "stop_id": "1_2021-09-21 13:03:35", "start_time": "2021-09-21T13:03:35", "end_time": "2021-09-21T13:05:06", "traj_id": 1, "duration_s": 91.0 }, "geometry": { "type": "Point", "coordinates": [ 4.7305265, 50.8506929 ] } }
+]
+}
