@@ -37,11 +37,16 @@ with open('data/output.geojson',"w") as outfile:
     + '"name": "testdata_geolife2",' + '\n'
     + '"crs": { "type": "output", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },' + '\n'
     + '"features": [' + '\n')
+    points = 1
     i = 1
     for x in points_list:
         c_timestamp = int(str(x[0])[:-3])
         dt_object = datetime.fromtimestamp(c_timestamp)
-        outfile.write('{ "type": "Feature", "properties": { "id": '+ str(i) + ', "sequence": ' + str(i) + ', "trajectory_id": 1, "tracker": 19, "t": "'+ str(dt_object) + '+00" }, "geometry": { "type": "Point", "coordinates": [ ' + str(x[2]) + ', '+ str(x[1]) + ' ] } },' + '\n')
+        #print(len(points_list), i)
+        if len(points_list) == i:
+            outfile.write('{ "type": "Feature", "properties": { "id": '+ str(i) + ', "sequence": ' + str(i) + ', "trajectory_id": 1, "tracker": 19, "t": "'+ str(dt_object) + '+00" }, "geometry": { "type": "Point", "coordinates": [ ' + str(x[2]) + ', '+ str(x[1]) + ' ] } }' + '\n')
+        else:
+            outfile.write('{ "type": "Feature", "properties": { "id": '+ str(i) + ', "sequence": ' + str(i) + ', "trajectory_id": 1, "tracker": 19, "t": "'+ str(dt_object) + '+00" }, "geometry": { "type": "Point", "coordinates": [ ' + str(x[2]) + ', '+ str(x[1]) + ' ] } },' + '\n')
         i= i+1
     outfile.write(']' + '\n'
         + '}' + '\n')
