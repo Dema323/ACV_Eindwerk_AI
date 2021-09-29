@@ -2,8 +2,11 @@ import json
 from geopy import distance
 
 
-coordinates_pure_lunchbar = (50.84725817820247, 4.73170296023146)
+coordinates_pure_lunchbar = (4.7301912, 50.8469991)
+UCLL = (4.726474, 50.8479709)
 point = (4.7305265, 50.8506929)
+
+
 
 
 # The integer refernces to the type of stoppoint this coordinate is
@@ -36,12 +39,11 @@ def add_label(filename='data/result.json'):
         for features in file_data['features']:
             coordinate = features['geometry']['coordinates']
             print(coordinate)
-            points_distance = distance.distance(point, coordinate).meters
-            if (points_distance < 5):
+            points_distance = distance.distance(coordinates_pure_lunchbar, coordinate).meters
+            print(points_distance)
+            if (points_distance < 20):
                 print(coordinate, points_distance)
                 features['type']=append_resto
-            else
-                features['type']=delivery_point
 
         file.seek(0)
         json.dump(file_data, file, indent=4)
