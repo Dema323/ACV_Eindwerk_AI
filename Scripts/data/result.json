@@ -36,7 +36,7 @@
             }
         },
         {
-            "type": "Feature",
+            "type": 2,
             "properties": {
                 "stop_id": "1_2021-09-29 12:35:14",
                 "start_time": "2021-09-29T12:35:14",

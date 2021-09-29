@@ -45,6 +45,11 @@ def add_label(filename='data/result.json'):
                 print(coordinate, points_distance)
                 features['type']=append_resto
 
+            points_distance = distance.distance(UCLL, coordinate).meters
+            if (points_distance < 20):
+                print(coordinate, points_distance)
+                features['type']=delivery_point_data
+
         file.seek(0)
         json.dump(file_data, file, indent=4)
 
