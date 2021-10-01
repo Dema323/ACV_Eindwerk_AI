@@ -1,5 +1,5 @@
 import json
-
+import sys
 import pandas as pd
 from datetime import datetime
 from datetime import date
@@ -8,23 +8,28 @@ def backtracking(filename='data/result.json'):
     with open(filename, 'r+') as file:
         file_data = json.load(file)
         
-        startx = datetime.timestamp(datetime.strptime(file_data['properties']['start_time'], '%Y-%m-%dT%H:%M:%S'))
+        
+        for features in file_data['features']:
             
-        endx = datetime.timestamp(datetime.strptime(file_data['properties']['end_time'], '%Y-%m-%dT%H:%M:%S'))
-           
-        bbb = backtrackingcompare(startx,endx)
-#        print(bbb)
-    return bbb
-        
-        
-        
-        
-        #for features in file_data['features']:
-            #startx = datetime.timestamp(datetime.strptime(features['properties']['start_time'], '%Y-%m-%dT%H:%M:%S'))
             
-            #endx = datetime.timestamp(datetime.strptime(features['properties']['end_time'], '%Y-%m-%dT%H:%M:%S'))
-           
             #backtrackingcompare(startx,endx)
+            y = backtrackingcompare(features)
+            
+        
+        
+        
+#        startx = datetime.timestamp(datetime.strptime(file_data['properties']['start_time'], '%Y-%m-%dT%H:%M:%S'))
+            
+#        endx = datetime.timestamp(datetime.strptime(file_data['properties']['end_time'], '%Y-%m-%dT%H:%M:%S'))
+           
+#        bbb = backtrackingcompare(startx,endx)
+#        print(bbb)
+#    return bbb
+        
+        
+        
+        
+        
         
     
                 
@@ -33,7 +38,9 @@ def backtracking(filename='data/result.json'):
         
         
         
-def backtrackingcompare(x,y,filename='data/output.json'):
+def backtrackingcompare(x,filename='data/output.json'):
+    startx = datetime.timestamp(datetime.strptime(x['properties']['start_time'], '%Y-%m-%dT%H:%M:%S'))
+    endx = datetime.timestamp(datetime.strptime(x['properties']['end_time'], '%Y-%m-%dT%H:%M:%S'))
     headx = 100000
     heady = 100000
     with open(filename, 'r+') as file:
@@ -41,10 +48,10 @@ def backtrackingcompare(x,y,filename='data/output.json'):
         for features in file_data['gps']:
             
             
-            if features['timestamp']//1000 == x:
+            if features['timestamp']//1000 == startx:
                 
                 headx = features['coords']['heading']
-            if features['timestamp']//1000 == y:
+            if features['timestamp']//1000 == endx:
                 
                 heady = features['coords']['heading']
             
@@ -59,6 +66,6 @@ def backtrackingcompare(x,y,filename='data/output.json'):
     
     return bool
 
-backtracking()
+
 
 
